@@ -18,3 +18,13 @@ samples, guidance on mobile development, and a full API reference.
 # Source of Project 
 
 **All thanks to** [Dbestech YouTube Channel](https://www.youtube.com/@dbestech) **for uploading the Course** [Flutter App Development Tutorial for Beginners iOS | Android | Complex UI | Training App GetX](https://www.youtube.com/watch?v=svQOxQde0bg)
+
+
+# At the End of the Course
+
+These are the picture of the two pages that i ended up with
+
+![Alt text](assets/Screenshot_20230522-001532.jpg)
+
+ ![Alt text](assets/Screenshot_20230522-001538.jpg)
+
