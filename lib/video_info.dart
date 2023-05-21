@@ -1,5 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'colors.dart' as color;
+
+// Time stamp on the video = 01:53:08
 
 class VideoInfo extends StatefulWidget {
   const VideoInfo({super.key});
@@ -9,6 +14,21 @@ class VideoInfo extends StatefulWidget {
 }
 
 class _VideoInfoState extends State<VideoInfo> {
+  List info = [];
+  void _initData() {
+    DefaultAssetBundle.of(context)
+        .loadString("json/videoinfo.json")
+        .then((value) {
+      info = json.decode(value);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +46,7 @@ class _VideoInfoState extends State<VideoInfo> {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.only(top: 70, left: 30, right: 30),
+              padding: const EdgeInsets.only(top: 70, left: 30, right: 30),
               width: MediaQuery.of(context).size.width,
               height: 300,
               child: Column(
@@ -34,10 +54,13 @@ class _VideoInfoState extends State<VideoInfo> {
                 children: [
                   Row(
                     children: [
-                      Icon(
-                        Icons.arrow_back_ios,
-                        size: 20,
-                        color: color.AppColor.secondPageIconColor,
+                      InkWell(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Icon(Icons.arrow_back_ios,
+                            size: 20,
+                            color: color.AppColor.secondPageIconColor),
                       ),
                       Expanded(child: Container()),
                       Icon(
@@ -47,7 +70,7 @@ class _VideoInfoState extends State<VideoInfo> {
                       )
                     ],
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   Text(
                     'Leg Toning',
                     style: TextStyle(
@@ -63,7 +86,7 @@ class _VideoInfoState extends State<VideoInfo> {
                       color: color.AppColor.secondPageTitleColor,
                     ),
                   ),
-                  SizedBox(height: 50),
+                  const SizedBox(height: 50),
                   Row(
                     children: [
                       Container(
@@ -89,7 +112,7 @@ class _VideoInfoState extends State<VideoInfo> {
                               size: 20,
                               color: color.AppColor.secondPageIconColor,
                             ),
-                            SizedBox(width: 5),
+                            const SizedBox(width: 5),
                             Text(
                               "68 min",
                               style: TextStyle(
@@ -99,7 +122,7 @@ class _VideoInfoState extends State<VideoInfo> {
                           ],
                         ),
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
                       Container(
                         width: 190,
                         height: 30,
@@ -123,7 +146,7 @@ class _VideoInfoState extends State<VideoInfo> {
                               size: 20,
                               color: color.AppColor.secondPageIconColor,
                             ),
-                            SizedBox(width: 5),
+                            const SizedBox(width: 5),
                             Text(
                               "Resistant band, Kettlebell",
                               style: TextStyle(
@@ -140,21 +163,37 @@ class _VideoInfoState extends State<VideoInfo> {
             ),
             Expanded(
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius:
                         BorderRadius.only(topRight: Radius.circular(70))),
                 child: Column(
                   children: [
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     Row(
                       children: [
+                        SizedBox(width: 30),
                         Text(
                           "Circuit 1: Legs Toning",
                           style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: color.AppColor.circuitsColor),
+                        ),
+                        Expanded(child: Container()),
+                        Row(
+                          children: [
+                            Icon(Icons.loop,
+                                size: 30, color: color.AppColor.loopColor),
+                            SizedBox(width: 10),
+                            Text(
+                              "3 Sets",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: color.AppColor.setsColor),
+                            ),
+                            SizedBox(width: 20)
+                          ],
                         )
                       ],
                     )
